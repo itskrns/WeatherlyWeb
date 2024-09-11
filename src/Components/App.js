@@ -12,6 +12,7 @@ import { Main } from "./Main";
 export default function App() {
   const [query, setQuery] = useState({ q: "delhi" });
   const [weather, setWeather] = useState(null);
+  const [city, setCity] = useState("");
 
   function handleSearch(e, city) {
     e.preventDefault();
@@ -28,6 +29,7 @@ export default function App() {
 
           const data = await getWeather({ ...query });
 
+          setQuery({ q: " " });
           if (!data) throw new Error();
 
           toast.success(
@@ -35,8 +37,9 @@ export default function App() {
               data.name ? data.name : "delhi"
             }`
           );
+
           setWeather(data);
-          setQuery({ q: "" });
+          setCity("");
         } catch (err) {
           toast.error("City not found!");
         }
@@ -52,7 +55,7 @@ export default function App() {
       <Header image={"logo"}>
         <h1>Weatherly</h1>
       </Header>
-      <Search query={query.q} onSearch={handleSearch} />
+      <Search city={city} onCity={setCity} onSearch={handleSearch} />
       <Main>
         {weather && (
           <>

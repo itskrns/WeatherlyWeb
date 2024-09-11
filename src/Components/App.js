@@ -13,6 +13,11 @@ export default function App() {
   const [query, setQuery] = useState({ q: "delhi" });
   const [weather, setWeather] = useState(null);
 
+  function handleSearch(e, city) {
+    e.preventDefault();
+    setQuery({ q: city });
+  }
+
   useEffect(
     function () {
       async function fetchData() {
@@ -23,7 +28,7 @@ export default function App() {
 
           const data = await getWeather({ ...query });
 
-          if (!data) throw new Error("City not found!");
+          if (!data) throw new Error();
 
           toast.success(
             `Successfully fetched weather data for ${
@@ -33,11 +38,11 @@ export default function App() {
           setWeather(data);
           setQuery({ q: "" });
         } catch (err) {
-          toast.error(err.message);
+          toast.error("City not found!");
         }
       }
 
-      fetchData();
+      if (query.q.length > 3) fetchData();
     },
     [query]
   );
@@ -47,7 +52,7 @@ export default function App() {
       <Header image={"logo"}>
         <h1>Weatherly</h1>
       </Header>
-      <Search query={query.q} onSearch={setQuery} />
+      <Search query={query.q} onSearch={handleSearch} />
       <Main>
         {weather && (
           <>

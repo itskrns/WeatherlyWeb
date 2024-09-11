@@ -66,7 +66,7 @@ button:hover {
   grid-template-columns: 4fr 1fr;
 }
 
-.search span:nth-child(1) {
+.search form:nth-child(1) {
   text-align: right;
 }
 

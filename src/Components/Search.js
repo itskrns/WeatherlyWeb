@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { toast } from "react-toastify";
 
 export function Search({ query, onSearch }) {
+  const [city, setCity] = useState("");
+
   function handleLocation() {
     if (navigator.geolocation) {
       toast.info(`Fetching user's current location...`);
@@ -17,14 +20,14 @@ export function Search({ query, onSearch }) {
 
   return (
     <div className="search">
-      <span>
+      <form onSubmit={(e) => onSearch(e, city)}>
         <input
           type="text"
-          value={query}
+          value={city}
           placeholder="Search for a city..."
-          onChange={(e) => onSearch({ q: e.target.value })}
+          onChange={(e) => setCity(e.target.value)}
         />
-      </span>
+      </form>
 
       <button onClick={handleLocation}>
         <img src="images/location.png" alt="location" />

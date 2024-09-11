@@ -18,7 +18,7 @@ export function Weather({ weather }) {
           alt="weather-icon"
           className="weather__icon"
         />
-        <span>35*</span>
+        <span>{weather.temp.toFixed()}°</span>
       </div>
 
       <div>

@@ -33,11 +33,10 @@ export default function App() {
             }`
           );
           setWeather(data);
+          setQuery({q:""});
         } catch (err) {
           if (err.name !== "AbortError") toast.error(err.message);
-        } finally {
-          setQuery({ q: "" });
-        }
+        } 
       }
 
       fetchData();

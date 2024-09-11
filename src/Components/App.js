@@ -15,15 +15,13 @@ export default function App() {
 
   useEffect(
     function () {
-      const controller = new AbortController();
-
       async function fetchData() {
         try {
           toast.info(
             `Fetching weather for ${query.q ? query.q : "current location."}`
           );
 
-          const data = await getWeather({ ...query }, controller);
+          const data = await getWeather({ ...query });
 
           if (!data) throw new Error("City not found!");
 
@@ -33,18 +31,13 @@ export default function App() {
             }`
           );
           setWeather(data);
-        } catch (err) {
-          if (err.name !== "AbortError") toast.error(err.message);
-        } finally {
           setQuery({ q: "" });
+        } catch (err) {
+          toast.error(err.message);
         }
       }
 
       fetchData();
-
-      return function () {
-        controller.abort();
-      };
     },
     [query]
   );

@@ -3,17 +3,16 @@ import axios from "axios";
 
 const API_KEY = "bbf5947563682b7c072e5d9861b27bb7";
 
-export async function getWeather(query, controller) {
+export async function getWeather(query) {
   let response;
   if (query.q)
     response = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?q=${query.q}&units=metric&appid=${API_KEY}`,
-      { signal: controller.signal }
+      `https://api.openweathermap.org/data/2.5/weather?q=${query.q}&units=metric&appid=${API_KEY}`
     );
   else
     response = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${query.lat}&lon=${query.lon}&units=metric&appid=${API_KEY}`,
-      { signal: controller.signal }
+      `https://api.openweathermap.org/data/2.5/weather?lat=${query.lat}&lon=${query.lon}&units=metric&appid=${API_KEY}`
+      
     );
 
   if (response.status === 200) return filterData(response.data);

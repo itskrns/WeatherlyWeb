@@ -5,7 +5,7 @@
 }
 
 html {
-  font-size: 75.3%;
+  font-size: 71%;
 }
 
 body {
@@ -25,13 +25,13 @@ button:hover {
   width: 60vw;
   color: #fff;
   margin: 1rem auto;
-  padding: 1rem 5rem;
+  padding: 1rem 3rem;
   border-radius: 0.5rem;
   box-shadow: 0 0 10px #919191;
   background-image: linear-gradient(
     to bottom right,
-    rgb(0, 0, 255, 0.9),
-    rgb(0, 255, 0, 0.9)
+    rgb(65, 8, 87, 0.9),
+    rgb(235, 28, 87, 0.9)
   );
 }
 
@@ -157,6 +157,10 @@ button:hover {
 @media screen and (max-width: 992px) {
   .app {
     width: 90vw;
+  }
+
+  .search {
+    width: 100%;
   }
 }
 
